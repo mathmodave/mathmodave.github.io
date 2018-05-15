@@ -247,8 +247,8 @@
 		var my_div = document.getElementById('regions_div')
         var chart = new google.visualization.GeoChart(my_div);
 
-    google.visualization.events.addListener(my_chart, 'ready', function () {
-      my_div.innerHTML = '<img src="' + my_chart.getImageURI() + '">';
+    google.visualization.events.addListener(chart, 'ready', function () {
+      my_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
     });
 
         chart.draw(data, options);
@@ -261,7 +261,7 @@
 
 </script>
 
-  <xscript>
+  <script>
   // tell the embed parent frame the height of the content
   if (window.parent && window.parent.parent){
     window.parent.parent.postMessage(["resultsFrame", {
@@ -269,7 +269,7 @@
       slug: "None"
     }], "*")
   }
-</xscript>
+</script>
 
 </body>
 
