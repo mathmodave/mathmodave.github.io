@@ -52,7 +52,7 @@
 
 <body>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-       <div id="regions_div" style="width: 900px; height: 500px;"></div>
+       <div id="regions_div" xstyle="width: 900px; height: 500px;"></div>
    
   
 
@@ -81,7 +81,7 @@
 
       function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable([
-          ['Country', 'Popularity'],
+          ['Country', 'Number'],
 ['Afghanistan', 12],
 ['Albania', 23],
 ['Algeria', 12],
@@ -244,7 +244,12 @@
         datalessRegionColor: '#000000',
         };
 
-        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+		var my_div = document.getElementById('regions_div')
+        var chart = new google.visualization.GeoChart(my_div);
+
+    google.visualization.events.addListener(my_chart, 'ready', function () {
+      my_div.innerHTML = '<img src="' + my_chart.getImageURI() + '">';
+    });
 
         chart.draw(data, options);
       }
@@ -256,7 +261,7 @@
 
 </script>
 
-  <script>
+  <xscript>
   // tell the embed parent frame the height of the content
   if (window.parent && window.parent.parent){
     window.parent.parent.postMessage(["resultsFrame", {
@@ -264,7 +269,7 @@
       slug: "None"
     }], "*")
   }
-</script>
+</xscript>
 
 </body>
 
