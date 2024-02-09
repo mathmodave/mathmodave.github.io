@@ -1,0 +1,20 @@
+resource "google_iam_deny_policy" "default" {
+  provider     = google
+  parent       = urlencode("cloudresourcemanager.googleapis.com/folders/1087039767498") # Misc
+  name         = "my-deny-policy"
+  display_name = "My deny policy."
+  rules {
+    deny_rule {
+      denied_principals  = ["principalSet://goog/public:all"]
+      denied_permissions = [
+        "compute.googleapis.com/instances.create",
+        "compute.googleapis.com/instances.resume",
+        "compute.googleapis.com/instances.start"
+      ]
+      denial_condition {
+        title =  "Only for over budget projects"
+        expression = "resource.hasTagKey('${google_tags_tag_key.overbudget.namespaced_name}')"
+      }
+    }
+  }
+}
